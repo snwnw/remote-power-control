@@ -1,0 +1,21 @@
+# Secrets — never commit these
+.env
+*.conf            # WireGuard configs
+*.key
+*.pem
+id_ed25519*
+authorized_keys
+wol.log
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# OS / editor cruft
+.DS_Store
+Thumbs.db
+*.swp
+.idea/
+.vscode/
