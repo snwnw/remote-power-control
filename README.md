@@ -125,42 +125,6 @@ remote-power-control/
 
 ---
 
-## ⚠️ Security — read before publishing or reusing
-
-This project handles credentials. Before pushing anywhere public or sharing:
-
-- **Regenerate the WireGuard client.** If a client private key was ever pasted
-  into a chat, a terminal log, or a screenshot, treat it as compromised. Create
-  a fresh client/peer on the router, import the new config, and delete the old
-  peer.
-- **Never commit the WireGuard `.conf`, SSH private keys, or `.env`.** They are
-  covered by [`.gitignore`](.gitignore); keep it that way.
-- **Set the server token from the environment**, not in source. `app.py` reads
-  `WOL_TOKEN` from the environment — pick a long random value.
-- **The token rides in the shortcut URL.** Anyone with the remote phone (or who
-  can read the shortcut) can read it. That is acceptable for a home LAN; do not
-  reuse it as a real secret.
-- **Use key-based SSH only — don't ship passwords.** Set strong account
-  passwords and rely on keys for the automation.
-- Local addresses are only mildly sensitive; the placeholders above keep them
-  out of the repo.
-
----
-
-## Status / known issues
-
-- ✅ Local wake/sleep, remote wake/sleep over VPN, on-demand tunnel, silent
-  shortcuts, fast sleep, magic-packet-only Windows wake — **all working.**
-- ⚠️ **Linux wake after a *long* (overnight) sleep is not yet confirmed.** This
-  is the `r8169` kernel bug ([#208033](https://bugzilla.kernel.org/show_bug.cgi?id=208033)):
-  WoL only arms after a manual suspend/resume cycle. A `systemd` sleep hook
-  (`reload-r8169`) is in place but has not been verified across a full night.
-  See [`docs/TROUBLESHOOTING.md`](docs/TROUBLESHOOTING.md#linux-wol-fails-after-a-long-sleep-r8169-bug).
-- 🚫 **TV IR control: dropped.** The phone exposes no public IR API, so
-  third-party automation can't drive the IR blaster. See
-  [`docs/DECISIONS.md`](docs/DECISIONS.md#tv-control-over-ir--dropped).
-
----
 
 ## License
 
